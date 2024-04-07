@@ -4,5 +4,5 @@ Motion tracking data was exported as a csv file using a python add-on that is av
 Some notes to make on this analysis:
 a) The video was shot at 1280 x 1024 resolution at 15 FPS. 
 b) Frame to seconds conversion in the code is based on these video parameters.
-c) Pixel to micrometre conversion in the code is based on the number of pixels across a 3 micron bead (11.66 pixels/micrometre) and is subject to uncertainties due to the differential z-positions of individual beads within the 20 micrometre deep well that the sample was placed in. This uncertainty was not factored into the preliminary analysis yet.
+c) Pixel to micrometre conversion in the code is based on the number of pixels across a 3 micron bead (11.66 pixels/micrometre) and is subject to uncertainties due to the differential z-positions of individual beads within the 20 micrometre deep well that the sample was placed in, and the coefficient of variation (CV) of 5% of the bead size from the manufacturer. These uncertainties have not been factored into the preliminary analysis yet.
 d) Code will be added at a later date to determine the maximum holding force of the optical tweezers from the best instance of bead trapping I could accomplish in my experiment. 
