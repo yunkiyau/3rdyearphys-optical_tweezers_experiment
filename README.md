@@ -1,6 +1,6 @@
 # Optical Tweezers Brownian Motion Analysis
 
-This repository contains a Jupyter notebook for analysing the Brownian motion of 1 µm and 3 µm polystyrene beads suspended in deionized water (0.04% CV), recorded using a **Thorlabs Portable Optical Tweezer** setup. The goal is to quantify bead displacements over time and estimate the effective viscosity of the medium.
+This repository contains a Jupyter notebook for analysing the Brownian motion of 1 µm and 3 µm polystyrene beads suspended in deionized water (0.04% CV), recorded using a **Thorlabs Portable Optical Tweezer** setup. The goal is to quantify bead displacements over time and estimate the effective viscosity of the medium. This experiment is one of the advanced experiments in the Senior Physics lab. I developed this workflow for the experiment which uses an add-on in Blender to perform the motion tracking of the beads from video recordings of the microscope. I found the standard motion tracking software listed in the manual (Viana.NET) to be unusable because it relies on tracking colours and I'm really not sure how any other student used it for this experiment. Hopefully future 3rd Physics students that come across this repo find it useful. Please feel free to reach out to me at yunki.yau@gmail.com if anything is unclear. 
 
 ## Workflow
 
@@ -22,12 +22,9 @@ This repository contains a Jupyter notebook for analysing the Brownian motion of
 notebooks/
     BrownianMotionAnalysis.ipynb   # main analysis & plots
 data/
-    raw CSV files (not tracked in git)
+    raw CSV files used in the analysis
 README.md
 ```
-
-> Note: `data/` is git-ignored. Add your CSVs locally in `data/` to run the notebook.  
-> A demo file can be force-added if sharing example data is desired.
 
 ## Requirements
 
@@ -54,7 +51,7 @@ Figures are generated inline in the notebook.
 
 ## Notes & Limitations
 
-- Frame-to-time conversion assumes **15 FPS**.  
+- Frame-to-time conversion assumes **15 FPS** which is the speed of the Thorlabs camera in the kit.  
 - Pixel-to-µm calibration (11.66 px/µm) is approximate; uncertainties due to bead depth (~20 µm well) and manufacturer CV (±5%) are **not yet propagated**.  
 - Future work: add code to estimate **maximum trapping force** from the strongest bead trap event.
 
