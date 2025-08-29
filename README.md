@@ -1,8 +1,68 @@
-This python code was used to analyze motion tracking data taken from video recorded from a Thorlabs Portable Optical Tweezer setup examining the brownian motion of 1 and 3 micron polystyrene beads in deionized water at 0.04% CV. Motion tracking was performed using blender 2.8 (GNU GNL), which can be downloaded at https://ftp.nluug.nl/pub/graphics/blender//release/Blender2.80/.
-Motion tracking data was exported as a csv file using a python add-on that is available from https://github.com/Amudtogal/blenderMotionExport. In my code, for each bead the mean squared displacement and time mean value is calculated, and then an average displacement per unit time is calculated for all beads of the same size by taking an average of all their time mean values. The average displacement for 1 and 3 micron beads are then plotted against time and a linear regression used to fit the curve through the origin. The slope of the curve can be used to calculate the effective viscosity for each solution.
+# Optical Tweezers Brownian Motion Analysis
 
-Some notes to make on this analysis:
-a) The video was shot at 1280 x 1024 resolution at 15 FPS. 
-b) Frame to seconds conversion in the code is based on these video parameters.
-c) Pixel to micrometre conversion in the code is based on the number of pixels across a 3 micron bead (11.66 pixels/micrometre) and is subject to uncertainties due to the differential z-positions of individual beads within the 20 micrometre deep well that the sample was placed in, and the coefficient of variation (CV) of 5% of the bead size from the manufacturer. These uncertainties have not been factored into the preliminary analysis yet.
-d) Code will be added at a later date to determine the maximum holding force of the optical tweezers from the best instance of bead trapping I could accomplish in my experiment. 
+This repository contains a Jupyter notebook for analysing the Brownian motion of 1 µm and 3 µm polystyrene beads suspended in deionized water (0.04% CV), recorded using a **Thorlabs Portable Optical Tweezer** setup. The goal is to quantify bead displacements over time and estimate the effective viscosity of the medium.
+
+## Workflow
+
+1. **Motion tracking**  
+   Videos (1280×1024 resolution, 15 FPS) were tracked in *Blender 2.8* (GNU GPL).  
+   - Tracking add-on: [blenderMotionExport](https://github.com/Amudtogal/blenderMotionExport)  
+   - Output: CSV files with bead trajectories.
+
+2. **Analysis (this notebook)**  
+   - Convert pixel coordinates → micrometres (11.66 px/µm, based on 3 µm bead diameter).  
+   - Compute per-bead mean squared displacement (MSD) and time-averaged values.  
+   - Average across beads of the same size.  
+   - Plot ⟨r²⟩ vs time and fit a line through the origin.  
+   - The fitted slope relates to diffusion and can be used to estimate effective viscosity.
+
+## Repository structure
+
+```
+notebooks/
+    BrownianMotionAnalysis.ipynb   # main analysis & plots
+data/
+    raw CSV files (not tracked in git)
+README.md
+```
+
+> Note: `data/` is git-ignored. Add your CSVs locally in `data/` to run the notebook.  
+> A demo file can be force-added if sharing example data is desired.
+
+## Requirements
+
+- Python 3.10+  
+- Jupyter Notebook  
+- numpy  
+- matplotlib  
+
+Install with:
+```bash
+pip install numpy matplotlib jupyter
+```
+
+## Usage
+
+1. Clone the repository and add your CSV tracking files into `data/`.  
+2. Launch Jupyter and open the notebook:
+   ```bash
+   jupyter notebook notebooks/BrownianMotionAnalysis.ipynb
+   ```
+3. Run all cells to reproduce the analysis and plots.  
+
+Figures are generated inline in the notebook.
+
+## Notes & Limitations
+
+- Frame-to-time conversion assumes **15 FPS**.  
+- Pixel-to-µm calibration (11.66 px/µm) is approximate; uncertainties due to bead depth (~20 µm well) and manufacturer CV (±5%) are **not yet propagated**.  
+- Future work: add code to estimate **maximum trapping force** from the strongest bead trap event.
+
+## Citation
+
+If you use this repository in academic or research work, please cite:
+
+**Yunki Yau**, *Optical Tweezers Brownian Motion Analysis*, GitHub, 2025.  
+[https://github.com/yunkiyau](https://github.com/yunkiyau)
+
+---
